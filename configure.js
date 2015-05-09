@@ -6,10 +6,10 @@ var fs = require('fs')
 Ractive.DEBUG = false
 
 var templates = {
-  status: fs.readFileSync(__dirname + '/status.tmpl').toString(),
-  install: fs.readFileSync(__dirname + '/install.tmpl').toString(),
-  run: fs.readFileSync(__dirname + '/run.tmpl').toString(),
-  settings: fs.readFileSync(__dirname + '/settings.tmpl').toString()
+  status: fs.readFileSync(__dirname + '/templates/status.tmpl').toString(),
+  install: fs.readFileSync(__dirname + '/templates/install.tmpl').toString(),
+  run: fs.readFileSync(__dirname + '/templates/run.tmpl').toString(),
+  settings: fs.readFileSync(__dirname + '/templates/settings.tmpl').toString()
 }
 
 var state = {}
