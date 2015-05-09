@@ -1,0 +1,22 @@
+{
+  "name": "network-meter",
+  "version": "0.1.0",
+  "main": "index.js",
+  "devDependencies": {
+    "beefy": "^2.1.5",
+    "electron-packager": "^3.1.0",
+    "electron-prebuilt": "^0.25.1",
+    "watchify": "^3.2.1"
+  },
+  "dependencies": {
+    "shelljs": "~0.4.0",
+    "highlight.js": "^8.5.0",
+    "page": "^1.6.1",
+    "ractive": "^0.7.1"
+  },
+  "scripts": {
+    "package": "electron-packager . NetworkMeter --icon=static/Icon.icns",
+    "start": "electron index.js 2>&1 | silence-chromium",
+    "web": "beefy web.js:bundle.js"
+  }
+}

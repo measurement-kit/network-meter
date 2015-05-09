@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Network Meter</title>
+    <link rel="stylesheet" href="node_modules/highlight.js/styles/solarized_light.css" charset="utf-8">
+    <link rel="stylesheet" href="css/app.css" charset="utf-8">
+  </head>
+  <body class="article">
+    
+    <div class="sidebar">
+      <div class="container">
+        <nav>
+          <div class="col-1">
+            <a href="/">
+              <img alt="Network meter" src="static/network-meter-logo.svg" width="25" height="25"/>
+              <span class="header-title">Network Meter</span>
+            </a>
+          </div>
+          <div class="col-2">
+          </div>
+        </nav>
+      </div>
+      
+      <div class="col-1 toc">
+        <h3><span class="closure"></span><a href="/status">Status</a></h3>
+        <div class="indent">
+          <h4><a href="#overview">Overview</a></h4>
+          <h4><a href="#heartbeat">Heartbeat</a></h4>
+        </div>
+        <h2><span class="closure"></span><a href="/install">Install</a></h2>
+        <h2><span class="closure"></span><a href="/run">Run</a></h2>
+        <h2><span class="closure"></span><a href="/settings">Settings</a></h2>
+      </div>
+    </div>
+
+    <main class="content" id="container"></main>
+
+    <script>
+    require('./configure.js')();
+    </script>
+  </body>
+</html>
+
