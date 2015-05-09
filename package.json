@@ -12,7 +12,9 @@
     "shelljs": "~0.4.0",
     "highlight.js": "^8.5.0",
     "page": "^1.6.1",
-    "ractive": "^0.7.1"
+    "ractive": "^0.7.1",
+    "moment": "~2.10.2",
+    "jquery": "~2.1.4"
   },
   "scripts": {
     "package": "electron-packager . NetworkMeter --icon=static/Icon.icns",
