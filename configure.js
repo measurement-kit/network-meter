@@ -6,7 +6,7 @@ var fs = require('fs')
 Ractive.DEBUG = false
 
 var templates = {
-  status: fs.readFileSync(__dirname + '/templates/status.tmpl').toString(),
+  dashboard: fs.readFileSync(__dirname + '/templates/dashboard.tmpl').toString(),
   install: fs.readFileSync(__dirname + '/templates/install.tmpl').toString(),
   run: fs.readFileSync(__dirname + '/templates/run.tmpl').toString(),
   settings: fs.readFileSync(__dirname + '/templates/settings.tmpl').toString()
@@ -15,9 +15,9 @@ var templates = {
 var state = {}
 
 var routes = {
-  status: function configure (ctx, next) {
-    ctx.template = templates.status
-    state.status = render(ctx, {})
+  dashboard: function configure (ctx, next) {
+    ctx.template = templates.dashboard
+    state.dashboard = render(ctx, {})
   },
   install: function configure (ctx, next) {
     ctx.template = templates.install
@@ -49,19 +49,19 @@ var events = {
 }
 
 // set up routes
-page('/', routes.status)
-page('/status', routes.status)
+page('/', routes.dashboard)
+page('/dashboard', routes.dashboard)
 page('/install', routes.install)
 page('/run', routes.run)
 page('/settings', routes.settings)
 
 // initialize router
 page.start()
-page('/status')
+page('/dashboard')
 
 function render (ctx) {
   var ract = new Ractive({
-    el: '#container',
+    el: '.page-content-wrapper',
     template: ctx.template,
     data: ctx.data
   })
