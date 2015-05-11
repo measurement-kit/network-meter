@@ -1,4 +1,4 @@
-Net Test Design Dcoument
+Net Test Design Document
 ========================
 Status: early draft
 
