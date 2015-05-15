@@ -1,4 +1,4 @@
-Net Test Design Document
+Network Meter Design Document
 ========================
 Status: early draft
 
