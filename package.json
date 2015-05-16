@@ -1,7 +1,13 @@
 {
   "name": "network-meter",
+  "productName": "Network Meter",
   "version": "0.1.0",
+  "description": "Graphical frontend for various network tests",
   "main": "index.js",
+  "repository": {
+      "type": "git",
+      "url" : "https://github.com/hellais/network-meter"
+  },
   "devDependencies": {
     "beefy": "^2.1.5",
     "electron-packager": "^3.1.0",
