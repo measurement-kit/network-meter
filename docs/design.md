@@ -1,4 +1,4 @@
-Net Test Design Document
+Network Meter Design Document
 ========================
 Status: early draft
 
@@ -65,3 +65,34 @@ reduce the likelyhood of retribution. Should a plugin be confirgured to use tor,
 Network Meter will attempt to connect to the network after obtaining the user's consent.
 Should a connection to the tor network be unavailable, the program may attempt
 to fetch a bridge address and configure tor to use it.
+
+Plugin Design
+==============
+
+Plugins are self-contained extensions to Network Meter. Plugins shall be zip archives, with
+a '.nmp' extension. Inside, the layout is as follows:
+* /main.cfg
+* /static/
+* /bin/
+* /layout.cfg
+* /output.cfg
+
+### Main config
+This contains general information about the plugin, such as the name, short description and
+author information. 
+
+This will also contain a list of local or external dependancies that the plugin requires.
+
+### Assets
+While Network Meter allows for automatic installation of dependancies via the plugin
+main configuration file, we recognize that some users may be unable to utilize this
+due to policy problems.
+
+As such, network meter plugins may contain a '/bin/' subdirectory with all needed binaries.
+
+We urge all developers to avoid bundling binaries. Fetching dependencies is safer and 
+easier to implement.
+
+### Layout config
+This file contain two main sections, one specificing the layout of the module within network
+meter and another for the Network Meter dashboard plugin.
