@@ -33,10 +33,17 @@
       </div>
     </div>
 
-    <main class="content" id="container"></main>
+    <main class="content" id="container"> 
+    <!-- temporary, move to seperate file -->
+    <button id='file_button'> choose file </button> <br> 
+    args: <input type='text' id='args'></input>
+    <button id='ooni_button'> run ooniprobe </button>
+
+    </main>
 
     <script>
-    require('./configure.js')();
+//  require('./configure.js');
+    require('./exec.js');
     </script>
   </body>
 </html>
