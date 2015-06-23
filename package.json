@@ -12,7 +12,8 @@
     "shelljs": "~0.4.0",
     "highlight.js": "^8.5.0",
     "page": "^1.6.1",
-    "ractive": "^0.7.1"
+    "ractive": "^0.7.1",
+    "adm-zip": "^0.4.7"
   },
   "scripts": {
     "package": "electron-packager . NetworkMeter --icon=static/Icon.icns",
