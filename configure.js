@@ -2,6 +2,7 @@ var ipc = require('ipc')
 var Ractive = require('ractive')
 var page = require('page')
 var fs = require('fs')
+var pluginParser = require('./plugin-parser.js');
 
 Ractive.DEBUG = false
 
@@ -25,6 +26,7 @@ var routes = {
   },
   run: function detail (ctx, next) {
     ctx.template = templates.run
+    ctx.data = {plugins : pluginParser.loadPlugins() }
     state.run = render(ctx, {})
   },
   settings: function about (ctx, next) {
@@ -69,3 +71,5 @@ function render (ctx) {
   ract.on(events)
   return ract
 }
+
+pluginParser.loadPlugins();

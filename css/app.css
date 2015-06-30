@@ -612,3 +612,16 @@ pre span.lw {
   margin-left: 10px;
 }
 
+/* =========================================== */
+/* Plugin grid */
+
+.plugin-container {
+    width: 600px;
+}
+
+.plugin {
+    width: 300px;
+    height: 200px;
+    outline: 1px solid;
+    float: left;
+}

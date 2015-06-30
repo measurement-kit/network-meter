@@ -1,7 +1,38 @@
-    <button id='file_button'> choose file </button> <br> 
-    args: <input type='text' id='args'/>
-    <button id='ooni_button'> run ooniprobe </button>
+<h2> Installed Plugins </h2>
 
-    <script>
-    require("./exec.js");
-    </script>
+<div id='container'>
+</div>
+
+<script id=template type='text/ractive'>
+    <div class='plugin-container'>
+        {{#each plugins}}
+            <div class='plugin'>
+            Name: {{name}}
+            <div>
+        {{/each}}
+    </div>
+</script>
+
+    <div class='plugin-container'>
+            <div class='plugin'>
+            Testing
+            </div>
+            <div class='plugin'>
+            Testing
+            </div>
+            <div class='plugin'>
+            Testing
+            </div>
+            <div class='plugin'>
+            Testing
+            </div>
+    </div>
+
+<h2> Binary Execution </h2>
+<button id='file_button'> choose file </button> <br> 
+args: <input type='text' id='args'/>
+<button id='ooni_button'> run ooniprobe </button>
+
+<script>
+require("./exec.js");
+</script>
