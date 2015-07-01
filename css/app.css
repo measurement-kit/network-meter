@@ -632,6 +632,7 @@ pre span.lw {
   float: left;
   background-color: #546E7A;
   color: #fff;
+  height: 25rem;
 }
 
 .plugin-header {
