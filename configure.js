@@ -26,8 +26,10 @@ var routes = {
   },
   run: function detail (ctx, next) {
     ctx.template = templates.run
-    ctx.data = {plugins : pluginParser.loadPlugins() }
     state.run = render(ctx, {})
+    pluginParser.loadPlugins(function(data){
+        state.run.set("plugins", data);
+    });
   },
   settings: function about (ctx, next) {
     ctx.template = templates.settings
@@ -71,5 +73,3 @@ function render (ctx) {
   ract.on(events)
   return ract
 }
-
-pluginParser.loadPlugins();

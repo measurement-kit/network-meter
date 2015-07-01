@@ -11,6 +11,8 @@ exports.loadPlugins = function(callback) {
             return;
         }
 
+        // consider revamp to async forEach.
+        // this method causes considerable startup delay
         var callbackCounter = files.length;
 
         files.forEach(function(f, index, array) {

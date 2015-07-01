@@ -1,32 +1,12 @@
 <h2> Installed Plugins </h2>
 
-<div id='container'>
-</div>
-
-<script id=template type='text/ractive'>
-    <div class='plugin-container'>
-        {{#each plugins}}
-            <div class='plugin'>
+<div class='plugin-container'>
+    {{#each plugins}}
+        <div class='plugin'>
             Name: {{name}}
-            <div>
-        {{/each}}
-    </div>
-</script>
-
-    <div class='plugin-container'>
-            <div class='plugin'>
-            Testing
-            </div>
-            <div class='plugin'>
-            Testing
-            </div>
-            <div class='plugin'>
-            Testing
-            </div>
-            <div class='plugin'>
-            Testing
-            </div>
-    </div>
+        </div>
+    {{/each}}
+</div> 
 
 <h2> Binary Execution </h2>
 <button id='file_button'> choose file </button> <br> 
