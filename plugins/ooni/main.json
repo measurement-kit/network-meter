@@ -1,8 +1,8 @@
 {
-    "name": "ooni",
-    "short": "network diagnostic tool",
-    "description": "Tool for displaying the route and measuring transit delays of packets across a network",
-    "version": "1.0.0",
+    "name": "OONI",
+    "short": "Open Observatory of Network Interference",
+    "description": "A free software, global observation network for detecting censorship, surveillance and traffic manipulation on the internet",
+    "version": "1.0.1",
     "exec": [
     {
         "full-path": "/usr/bin/traceroute"
@@ -36,5 +36,5 @@
         "hint": "maximum number of hops (default 30)"
     }
     ],
-    "command": "traceroute --verbose $ipv6 $max_ttl $host"
+    "command": "ooni --verbose $ipv6 $max_ttl $host"
 } 
