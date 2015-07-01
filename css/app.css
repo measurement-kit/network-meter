@@ -653,3 +653,11 @@ pre span.lw {
     text-align: right;
     vertical-align: middle;
 }
+
+/* ========================================= */
+/* temp stuff */
+
+.binary-block {
+    display: inline-block;
+    min-width: 45rem;
+}
