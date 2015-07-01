@@ -3,7 +3,13 @@
 <div class='plugin-container'>
     {{#each plugins}}
         <div class='plugin'>
-            Name: {{name}}
+            <div class='plugin-header'>
+                <div class='plugin-title'> {{name}} </div>
+                <div class='plugin-version'> {{version}} </div>
+            </div>
+            <div class='body'>
+                {{description}}
+            </div>
         </div>
     {{/each}}
 </div> 

@@ -616,12 +616,39 @@ pre span.lw {
 /* Plugin grid */
 
 .plugin-container {
-    width: 600px;
+    width: 45rem;
 }
 
 .plugin {
-    width: 300px;
-    height: 200px;
-    outline: 1px solid;
+  padding:1.5rem;
+  box-shadow:0 1px 2px #aaa;
+  background:white;
+  margin:0 1rem 1rem;
+  border-radius:3px;
+  user-select:none;
+  animation:fly-in-from-left .5s 1s ease both;
+  transform-origin:top left;
+  width: 20rem;
+  float: left;
+  background-color: #546E7A;
+  color: #fff;
+}
+
+.plugin-header {
+    height: 24px;
+    line-height: 24px;
+}
+
+.plugin-title {
+    font-size: 24px;
+    color: #fff;
     float: left;
+    width: 85%;
+    vertical-align: middle;
+}
+
+.plugin-version {
+    float: left;
+    text-align: right;
+    vertical-align: middle;
 }
