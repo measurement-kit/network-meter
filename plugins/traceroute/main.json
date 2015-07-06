@@ -1,0 +1,40 @@
+{
+    "name": "traceroute",
+    "short": "network diagnostic tool",
+    "description": "Tool for displaying the route and measuring transit delays of packets across a network",
+    "version": "1.0.0",
+    "exec": [
+    {
+        "full-path": "/usr/bin/traceroute"
+    },
+    {
+        "global": "traceroute"
+    }
+    ],
+    "args": [
+    {
+        "name": "host",
+        "type": "parameter",
+        "required": true,
+        "regex": "",
+        "hint": "IP address of destination"
+    },
+    {
+        "name": "ipv6",
+        "type": "flag",
+        "required": false,
+        "flag": "-6",
+        "regex": "",
+        "hint": "force IPv6 tracerouting"
+    },
+    {
+        "name": "max_ttl",
+        "type": "flaggedParameter",
+        "required": false,
+        "flag": "-m",
+        "regex": "",
+        "hint": "maximum number of hops (default 30)"
+    }
+    ],
+    "command": "traceroute --verbose $ipv6 $max_ttl $host"
+} 

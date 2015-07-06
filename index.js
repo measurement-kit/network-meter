@@ -11,8 +11,8 @@ var mainWindow
 
 function appReady () {
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    width: 800,
+    height: 600,
     title: APP_NAME
   })
   mainWindow.loadUrl(INDEX)

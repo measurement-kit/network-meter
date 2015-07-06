@@ -1,0 +1,26 @@
+<h1> Installed Plugins </h1>
+
+<div class='plugin-container'>
+    {{#each plugins}}
+        <div class='plugin'>
+            <div class='plugin-header'>
+                <div class='plugin-title'> {{name}} </div>
+                <div class='plugin-version'> {{version}} </div>
+            </div>
+            <div class='body'>
+                {{description}}
+            </div>
+        </div>
+    {{/each}}
+</div> 
+
+<div class='binary-block'>
+<h2> Binary Execution </h2>
+<button id='file_button'> choose file </button> <br> 
+args: <input type='text' id='args'/>
+<button id='ooni_button'> run ooniprobe </button>
+</div>
+
+<script>
+require("./exec.js");
+</script>

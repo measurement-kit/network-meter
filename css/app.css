@@ -44,7 +44,7 @@ nav {
 }
 
 main {
-  padding-top: 10rem;
+  padding-top: 0.25rem;
   padding-bottom: 10rem;
   margin-left: 150px;
   background-color: #fff;
@@ -612,3 +612,52 @@ pre span.lw {
   margin-left: 10px;
 }
 
+/* =========================================== */
+/* Plugin grid */
+
+.plugin-container {
+    width: 45rem;
+}
+
+.plugin {
+  padding:1.5rem;
+  box-shadow:0 1px 2px #aaa;
+  background:white;
+  margin:0 1rem 1rem;
+  border-radius:3px;
+  user-select:none;
+  animation:fly-in-from-left .5s 1s ease both;
+  transform-origin:top left;
+  width: 20rem;
+  float: left;
+  background-color: #546E7A;
+  color: #fff;
+  height: 25rem;
+}
+
+.plugin-header {
+    height: 24px;
+    line-height: 24px;
+}
+
+.plugin-title {
+    font-size: 24px;
+    color: #fff;
+    float: left;
+    width: 85%;
+    vertical-align: middle;
+}
+
+.plugin-version {
+    float: left;
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* ========================================= */
+/* temp stuff */
+
+.binary-block {
+    display: inline-block;
+    min-width: 45rem;
+}
