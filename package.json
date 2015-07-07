@@ -1,6 +1,15 @@
 {
   "name": "network-meter",
+  "productName" : "Network Meter",
+  "description": "Extensible graphical frontend for various network tests",
   "version": "0.1.0",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com:measurement-kit/network-meter.git"
+  },
+  "bugs": {
+      "url": "https://github.com/measurement-kit/network-meter/issues"
+  },
   "main": "index.js",
   "devDependencies": {
     "beefy": "^2.1.5",
@@ -13,7 +22,8 @@
     "highlight.js": "^8.5.0",
     "page": "^1.6.1",
     "ractive": "^0.7.1",
-    "adm-zip": "^0.4.7"
+    "adm-zip": "^0.4.7",
+    "silence-chromium": "^2.0.0"
   },
   "scripts": {
     "package": "electron-packager . NetworkMeter --icon=static/Icon.icns",
