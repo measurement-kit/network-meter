@@ -14,14 +14,14 @@
     "args": [
     {
         "name": "host",
-        "type": "parameter",
+        "type": "textbox",
         "required": true,
-        "regex": "",
+        "regex": "(^(?!\\-)(?:[a-zA-Z\\d\\-]{0,62}[a-zA-Z\\d]\\.){1,126}(?!\\d+)[a-zA-Z\\d]{2,63}$)|(^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$)",
         "hint": "IP address of destination"
     },
     {
         "name": "ipv6",
-        "type": "flag",
+        "type": "checkbox",
         "required": false,
         "flag": "-6",
         "regex": "",
@@ -29,11 +29,12 @@
     },
     {
         "name": "max_ttl",
-        "type": "flaggedParameter",
+        "type": "numberbox",
         "required": false,
         "flag": "-m",
-        "regex": "",
-        "hint": "maximum number of hops (default 30)"
+        "hint": "maximum number of hops (default 30)",
+        "min": "1",
+        "sanedefault": "30"
     }
     ],
     "command": "traceroute --verbose $ipv6 $max_ttl $host"

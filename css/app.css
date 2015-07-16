@@ -221,7 +221,7 @@ h1 {
 
 h2 {
   font-size: 1.15rem;
-  margin: 3em 0 1em;
+  bottom: 3em 0 1em;
 }
 
 .homepage .col-1 h2 {
@@ -654,10 +654,95 @@ pre span.lw {
     vertical-align: middle;
 }
 
+/* ======================================== */
+/* args modal */
+
+#overlay {
+     visibility: hidden; 
+     position: fixed;
+     left: 150px;
+     top: 0px;
+     width: calc(100% - 150px);
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background: rgba(0, 0, 0, 0.5);
+}
+
+#overlay #overlay-container {
+     width: 80%;
+     margin: 100px auto;
+     background-color: #fff;
+     border:1px solid #000;
+     border-radius: 5px;
+     padding:15px;
+     padding-top:0px;
+     padding-left: 0px;
+     padding-right: 0px;
+     text-align:center;
+}
+
+#modal-header {
+    background: #26292c;
+    color: white;
+    margin-top: 0px;
+    height: 100%;
+    font-size: 150%;
+}
+
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    left: 87%;
+    top: 95px;
+    text-align: center;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
+input:invalid {
+      background-color: #ffdddd;
+}
+
 /* ========================================= */
 /* temp stuff */
 
 .binary-block {
     display: inline-block;
     min-width: 45rem;
+}
+
+.argument-container {
+    padding: 10px;
+    border-top: grey thin solid;
+    border-spacing: 2px;
+    vertical-align: middle;
+    clear: left;
+}
+
+.arg-name {
+    float: left;
+    text-align: left;
+    font-weight: bold;
+    width: 25%;
+}
+
+.arg-buttons {
+    float: left;
+    padding-left: 15px;
+}
+
+.hint {
+    font-weight: normal;
+    font-size: 80%;
+    color: grey;
+    max-width:100%;
+    padding-bottom: 3px;
 }
