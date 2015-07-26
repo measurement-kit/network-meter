@@ -14,3 +14,6 @@ npm install -d
 npm install
 npm start
 ```
+
+# Screenshot
+![screenshot](static/screenshot.png)
