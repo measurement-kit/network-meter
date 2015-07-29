@@ -617,6 +617,26 @@ h1 {
 }
 
 /* =========================================== */
+/* Plugin Install Menu */
+
+#install-info {
+    float: left;
+    width: 55%;
+    margin: 15px;
+    margin-top: 0px;
+}
+
+#install-container {
+    float: left;
+    width: 40%;
+}
+
+#plugin_select {
+    width: 50%;
+    margin: auto;
+}
+
+/* =========================================== */
 /* Plugin grid */
 
 .plugin-container {
