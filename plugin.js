@@ -5,6 +5,7 @@ var fs = require("fs");
 var path = require("path");
 var AdmZip = require("adm-zip");
 var events = require("events");
+var rmdir = require("rimraf"); // I still don't believe this is really a thing
 
 var fileName = null;
 
@@ -22,6 +23,8 @@ document.getElementById("plugin_select").onclick = function(){
     });
 };
 
+
+// TODO implement callback and error handling
 var installPlugin = function(pluginPath){
     var filename = path.basename(pluginPath, '.nmp');
     var installFolder = path.resolve('plugins') + path.sep + filename + path.sep;
@@ -29,3 +32,8 @@ var installPlugin = function(pluginPath){
     var zip = new AdmZip(pluginPath);
     zip.extractAllTo(installFolder);
 };
+
+var deletePlugin = function(pluginName, callback){
+    var pluginFolder = path.resolve('plugins') + path.sep + pluginName;
+    rmdir(pluginFolder, callback);
+}
