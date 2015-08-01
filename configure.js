@@ -3,6 +3,7 @@ var Ractive = require('ractive')
 var page = require('page')
 var fs = require('fs')
 var pluginParser = require('./plugin-parser.js');
+var exec = require('./exec.js');
 
 Ractive.DEBUG = false
 
@@ -28,7 +29,8 @@ var routes = {
     ctx.template = templates.run
     state.run = render(ctx, {})
     pluginParser.loadPlugins(function(data){
-        state.run.set("plugins", data);
+        // actions can only be bound to grid after full initialization
+        state.run.set("plugins", data).then(exec.bindPluginGrid(state));
     });
   },
   settings: function about (ctx, next) {

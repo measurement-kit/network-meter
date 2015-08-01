@@ -4,38 +4,65 @@
     "description": "Tool for displaying the route and measuring transit delays of packets across a network",
     "version": "1.0.0",
     "exec": [
-    {
-        "full-path": "/usr/bin/traceroute"
-    },
-    {
-        "global": "traceroute"
-    }
+        {
+            "full-path": "/bin/ping"
+        },
+        {
+            "global": "ping"
+        }
     ],
     "args": [
-    {
-        "name": "host",
-        "type": "parameter",
-        "required": true,
-        "regex": "",
-        "hint": "IP address of destination"
-    },
-    {
-        "name": "ipv6",
-        "type": "flag",
-        "required": false,
-        "flag": "-6",
-        "regex": "",
-        "hint": "force IPv6 tracerouting"
-    },
-    {
-        "name": "max_ttl",
-        "type": "flaggedParameter",
-        "required": false,
-        "flag": "-m",
-        "regex": "",
-        "hint": "maximum number of hops (default 30)"
-    }
+        {
+            "name": "count",
+            "type": "numberbox",
+            "flag": "-c",
+            "required": false,
+            "min": "1",
+            "hint": "number of ping requests to send"
+        },
+        {
+            "name": "ipv6",
+            "type": "checkbox",
+            "flag": "-N ping6",
+            "hint": "force IPv6 Node Information Queries"
+        },
+        {
+            "name": "timeout",
+            "type": "radio",
+            "flag": "-W",
+            "required": false,
+            "options": [
+                {
+                    "display": "Short",
+                    "value": "0.1"
+                },
+                {
+                    "display": "Medium",
+                    "value": "2.0"
+                },
+                {
+                    "display": "Long",
+                    "value": "10"
+                }
+            ],
+            "hint": "timeout to wait in absence of responses"
+        },
+        {
+            "name": "interval",
+            "type": "slider",
+            "flag": "-i",
+            "min": "0.5",
+            "max": "20",
+            "sanedefault": "1",
+            "hint": "time between pings"
+        },
+        {
+            "name": "target",
+            "type": "textbox",
+            "required": true,
+            "regex": "(^(?!\\-)(?:[a-zA-Z\\d\\-]{0,62}[a-zA-Z\\d]\\.){1,126}(?!\\d+)[a-zA-Z\\d]{2,63}$)|(^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$)",
+            "hint": "target address to ping"
+        }
     ],
-    "command": "traceroute --verbose $ipv6 $max_ttl $host"
-} 
-
+    "command": "ping -v $ipv6 $timeout $target"
+}
