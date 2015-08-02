@@ -24,6 +24,10 @@ var routes = {
   install: function configure (ctx, next) {
     ctx.template = templates.install
     state.install = render(ctx, {})
+    pluginParser.loadPlugins(function(data){
+        // actions can only be bound to grid after full initialization
+        state.install.set("plugins", data);
+    });
   },
   run: function detail (ctx, next) {
     ctx.template = templates.run

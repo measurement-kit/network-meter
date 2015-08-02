@@ -12,4 +12,21 @@
     <button id='plugin_select'> Add Plugin </button>
 </div>
 
+<div id='installed-plugins'>
+<hr id='install-divider'>
+    <h1> Manage Plugins </h1>
+    <table id='plugin-list'>
+        <tr>
+            <th id='name-header'> Name </th>
+            <th> Description </th>
+        </tr>
+        {{#each plugins:num}}
+        <tr>
+            <td> <button class='uninstall-button'>×</button>{{name}} </td>
+            <td> {{short}} </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
 <script> require("./plugin.js"); </script>
