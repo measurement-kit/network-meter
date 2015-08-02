@@ -148,7 +148,7 @@ footer .row {
   html { font-size: 14px; }
   .col-1, .col-2, .col-3 { margin: 0 3rem; }
   .tcol-1           { padding-right: 3rem; }
-  .col-1     { width: calc(12.5rem * 1 + 3rem * 0); }
+  .col-1     { width: calc(8rem * 1); } 
   .col-2     { width: calc(12.5rem * 2 + 3rem * 1); }
   .col-3     { width: calc(12.5rem * 3 + 3rem * 2); }
   .container { width: calc(12.5rem * 3 + 3rem * 4); }
