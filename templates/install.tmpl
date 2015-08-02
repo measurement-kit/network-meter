@@ -22,11 +22,11 @@
         </tr>
         {{#each plugins:num}}
         <tr>
-            <td> <button class='uninstall-button'>×</button>{{name}} </td>
+            <td> <button type="button" class='uninstall-button' id={{num}}>×</button>{{name}} </td>
             <td> {{short}} </td>
         </tr>
         {{/each}}
     </table>
 </div>
 
-<script> require("./plugin.js"); </script>
+<script> var pluginlib = require("./plugin.js"); pluginlib.setupInstall(); </script>

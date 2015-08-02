@@ -4,6 +4,7 @@ var page = require('page')
 var fs = require('fs')
 var pluginParser = require('./plugin-parser.js');
 var exec = require('./exec.js');
+var libplugin = require('./plugin.js');
 
 Ractive.DEBUG = false
 
@@ -26,7 +27,7 @@ var routes = {
     state.install = render(ctx, {})
     pluginParser.loadPlugins(function(data){
         // actions can only be bound to grid after full initialization
-        state.install.set("plugins", data);
+        state.install.set("plugins", data).then(libplugin.bindDeleteButtons(state));
     });
   },
   run: function detail (ctx, next) {
