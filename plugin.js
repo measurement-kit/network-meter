@@ -9,10 +9,6 @@ var rmdir = require("rimraf"); // I still don't believe this is really a thing
 
 var fileName = null;
 
-addClicktoElement = function(array, element, call) {
-    array[element].onclick = call;
-}
-
 exports.bindDeleteButtons = function(state){
     var array = document.getElementsByClassName("uninstall-button");
     for (var i=0; i < array.length; i++) {
