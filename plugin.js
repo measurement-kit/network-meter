@@ -6,6 +6,7 @@ var path = require("path");
 var AdmZip = require("adm-zip");
 var events = require("events");
 var rmdir = require("rimraf"); // I still don't believe this is really a thing
+var pluginParser = require('./plugin-parser.js');
 
 var fileName = null;
 
@@ -52,18 +53,23 @@ var deleteSelectedPlugin = function(state) {
     "message": "Are you sure you want to delete?",
     "buttons": buttons}, function(result) {
 
-
     if (buttons[result] == "Delete") {
         var selectedInt = state.install.get("selected");
         var name = state.install.get("plugins[" + selectedInt + "].name");
-        deletePlugin(name);
-        state.install.update();
+        deletePlugin(name, function() {
+
+        //TODO find more elegant way
+        pluginParser.loadPlugins(function(data){
+            // actions can only be bound to grid after full initialization
+            state.install.set("plugins", data);
+            state.install.update()
+        });
+        });
     }
     });
 }
 
 var deletePlugin = function(pluginName, callback){
     var pluginFolder = path.resolve('plugins') + path.sep + pluginName + path.sep;
-    console.log("deleting " + pluginFolder);
-    rmdir(pluginFolder, function(result){console.log(result)});
+    rmdir(pluginFolder, callback);
 }

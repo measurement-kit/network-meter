@@ -70,6 +70,8 @@ page('/settings', routes.settings)
 page.start()
 page('/status')
 
+state.page = page;
+
 function render (ctx) {
   var ract = new Ractive({
     el: '#container',
