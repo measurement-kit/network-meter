@@ -25,15 +25,17 @@ exports.bindDeleteButtons = function(state){
 exports.setupInstall = function() {
     document.getElementById("plugin_select").onclick = function(){
         dialog.showOpenDialog({ properties: [ 'openFile'],
-        filters: [{name: 'Network Meter Plugins', extensions: ['nmp']}]}, function(data, err){
-            var fileName = data.toString();
-            fs.access(fileName, fs.R_OK, function(err) {
-                if (err) {
-                    dialog.showErrorBox("File Error", "File you specified could not be accessed.");
-                    return console.log(err);
-                }
-            });
-            installPlugin(fileName);
+        filters: [{name: 'Network Meter Plugins', extensions: ['nmp']}]}, function(data, errors){
+            if (data != undefined) {
+                var fileName = data.toString();
+                fs.access(fileName, fs.R_OK, function(err) {
+                    if (err) {
+                        dialog.showErrorBox("File Error", "File you specified could not be accessed.");
+                        return console.log(err);
+                    }
+                });
+                installPlugin(fileName);
+            }
         });
     };
 }
