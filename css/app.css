@@ -49,6 +49,7 @@ main {
   margin-left: 150px;
   background-color: #fff;
   min-height: 100vh;
+  height: 100%;
 }
 
 .sidebar {
@@ -690,6 +691,7 @@ h1 {
 
 .plugin-container {
     width: 45rem;
+    height: 100vh;
 }
 
 .plugin {

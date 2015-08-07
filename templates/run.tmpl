@@ -14,13 +14,6 @@
     {{/each}}
 </div> 
 
-<div class='binary-block'>
-<h2> Binary Execution </h2>
-<button id='file_button'> choose file </button> <br> 
-args: <input type='text' id='args'/>
-<button id='ooni_button'> run ooniprobe </button>
-</div>
-
 <div id="overlay">
     <div id="overlay-container">
          {{#with plugins[selected]}}
@@ -85,5 +78,4 @@ args: <input type='text' id='args'/>
 
 <script>
 exec = require("./exec.js");
-exec.bindButtons();
 </script>
