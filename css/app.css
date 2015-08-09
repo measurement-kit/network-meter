@@ -786,14 +786,6 @@ input:invalid {
       background-color: #ffdddd;
 }
 
-/* ========================================= */
-/* temp stuff */
-
-.binary-block {
-    display: inline-block;
-    min-width: 45rem;
-}
-
 .argument-container {
     padding: 10px;
     border-top: grey thin solid;
@@ -821,3 +813,24 @@ input:invalid {
     max-width:100%;
     padding-bottom: 3px;
 }
+
+#modal-body.input {
+    width: 100%;
+}
+
+.activation {
+    float: left;
+    margin: 10px 10px 10px 10px;
+    margin-left: 0px;
+}
+
+.activation:not(:checked) + .arg-name,
+.activation:not(:checked) + .arg-name + .arg-buttons {
+    font: grey;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ========================================= */
+/* temp stuff */
+
