@@ -76,7 +76,11 @@ var collectArgs = function(state) {
                 }
             }
             var flag = flagArray[flagIndex].flag;
-            optionValue = flag ? flag + " " + option.value : option.value;
+
+            if (option.value == "on" && option.type == "checkbox") {
+                optionValue = flag? flag + " " + option.value.replace("on", "") : null;
+            } else 
+                optionValue = flag ? flag + " " + option.value : option.value;
 
             args.push([optionName, optionValue]);
         }
