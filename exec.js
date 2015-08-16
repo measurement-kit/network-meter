@@ -25,7 +25,10 @@ exports.bindPluginGrid = function(state){
 
 var bindRunButton = function(state) {
     document.getElementById("run-button").addEventListener("click", 
-        function() { collectArgs(state) });
+        function() { 
+            if (formValid())
+                collectArgs(state) 
+        });
 };
 
 /* Reads arguments from the modal and generates a command
@@ -42,7 +45,7 @@ var collectArgs = function(state) {
         var activation = containers[i].getElementsByClassName("activation")[0];
         if (activation && activation.checked || !activation) {
             var option = containers[i].getElementsByTagName("input");
-
+            console.log(option.length);
             // to handle dialog boxes
             if (option.length == 1 && activation)
                 var option = containers[i].getElementsByTagName("select");
@@ -51,7 +54,6 @@ var collectArgs = function(state) {
                 for(var k = 0; k < option.length; k++) {
                     if (option[k].checked && k != 0) {
                         var option = option[k]
-                        console.log(option.value);
                         break;
                     }
                 }
@@ -100,3 +102,12 @@ var toggleOverlay = function() {
     el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     window.scrollTo(0,0);
 };
+
+var formValid = function() {
+    var argForm = document.getElementById("arg-form");
+    for(var i = 0; i < argForm.length; i++) {
+        if (!argForm[i].validity.valid)
+            return false;
+    }
+    return true;
+}
