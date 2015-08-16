@@ -105,14 +105,14 @@
                     <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
                     <div class="arg-buttons">
                         {{#each options}}
-                            <input type="radio" name=arg-{{name}} value={{value}}> {{display}}   
+                            <input type="radio" name=arg-{{name}} value={{value}}> {{display}} 
                         {{/each}}
                     </div> <br>
                 {{else}}
                 {{#if type == "dropdown"}}
                     <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
                     <div class="arg-buttons">
-                        <select>
+                        <select name=arg-{{name}}>
                         {{#each options}}
                             <option value={{value}}> {{display}} </option>
                         {{/each}}

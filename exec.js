@@ -42,10 +42,26 @@ var collectArgs = function(state) {
         var activation = containers[i].getElementsByClassName("activation")[0];
         if (activation && activation.checked || !activation) {
             var option = containers[i].getElementsByTagName("input");
-            //relevant input is always the last one
-            option = option[option.length - 1];
+
+            // to handle dialog boxes
+            if (option.length == 1 && activation)
+                var option = containers[i].getElementsByTagName("select");
+            // to handle radio buttons
+            else if (option.length > 2) {
+                for(var k = 0; k < option.length; k++) {
+                    if (option[k].checked && k != 0) {
+                        var option = option[k]
+                        console.log(option.value);
+                        break;
+                    }
+                }
+            }
+            else
+            // for all other inputs, relevant input is always the last one
+                option = option[option.length - 1];
 
             var optionName = option.name.replace("arg-", "");
+            optionName = optionName.replace("-activated", "");
             var optionValue;
             
             // if the arg has a flag, prepend the flag
@@ -72,7 +88,7 @@ var collectArgs = function(state) {
     }
 
     // gets rid of any variables that have not been specified
-    command = command.replace(new RegExp(/\$[a-z][a-z0-9]*\s/g), "");
+    command = command.replace(new RegExp(/\$[a-z][a-z0-9_]*\s/g), "");
 
     dialog.showMessageBox({"type": "info", "message": command, "buttons": ["close"]});
 };
