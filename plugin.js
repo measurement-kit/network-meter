@@ -79,5 +79,11 @@ var deleteSelectedPlugin = function(state) {
 
 var deletePlugin = function(pluginName, callback){
     var pluginFolder = path.resolve('plugins') + path.sep + pluginName + path.sep;
-    rmdir(pluginFolder, callback);
+    pluginFolder = fs.realpathSync(pluginFolder);
+
+    // returns -1 if not a substring
+    var index = pluginFolder.indexOf(path.resolve('plugins'));
+    if (index != -1) {
+        rmdir(pluginFolder, callback);
+    }
 }
