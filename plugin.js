@@ -7,12 +7,11 @@ var AdmZip = require("adm-zip");
 var events = require("events");
 var rmdir = require("rimraf"); // I still don't believe this is really a thing
 var pluginParser = require('./plugin-parser.js');
+var configure = require('./configure.js');
 
 var fileName = null;
-var localState = null;
 
 exports.bindDeleteButtons = function(state){
-    localState = state;
     var array = document.getElementsByClassName("uninstall-button");
     for (var i=0; i < array.length; i++) {
         array[i].addEventListener('click', function(object) {
@@ -49,8 +48,8 @@ var installPlugin = function(pluginPath){
     zip.extractAllTo(installFolder);
     pluginParser.loadPlugins(function(data){
         // actions can only be bound to grid after full initialization
-        localState.install.set("plugins", data);
-        localState.install.update()
+        configure.getState().install.set("plugins", data);
+        configure.getState().install.update()
     });
 };
 
