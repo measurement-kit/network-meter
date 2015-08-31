@@ -23,7 +23,8 @@
     "page": "^1.6.1",
     "ractive": "^0.7.1",
     "adm-zip": "^0.4.7",
-    "silence-chromium": "^2.0.0"
+    "silence-chromium": "^2.0.0",
+    "rimraf": "^2.1"
   },
   "scripts": {
     "package": "electron-packager . NetworkMeter --icon=static/Icon.icns",

@@ -1,4 +1,32 @@
 <h1> Install Plugins </h1>
-<button id='plugin_select'> Select Plugin </button> <br>
 
-<script> require("./plugin.js"); </script>
+<div id='install-info'>
+    <p id='plugin-description'> Plugins are extensions to Network Meter that add
+    features. Once a plugin is installed, it will appear on the dashboard
+    and its tests can be accessed from the 'run' menu item.</p>
+</div>
+
+<div id='install-container'>
+    <h3> Install New Plugins </h3>
+    <p id='plugin-warning'> Only install plugins from sources you trust. </p>
+    <button id='plugin_select'> Add Plugin </button>
+</div>
+
+<div id='installed-plugins'>
+<hr id='install-divider'>
+    <h1> Manage Plugins </h1>
+    <table id='plugin-list'>
+        <tr>
+            <th id='name-header'> Name </th>
+            <th> Description </th>
+        </tr>
+        {{#each plugins:num}}
+        <tr>
+            <td> <button type="button" class='uninstall-button' id={{num}}>×</button>{{name}} </td>
+            <td> {{short}} </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
+<script> var pluginlib = require("./plugin.js"); pluginlib.setupInstall(); </script>

@@ -148,7 +148,7 @@ footer .row {
   html { font-size: 14px; }
   .col-1, .col-2, .col-3 { margin: 0 3rem; }
   .tcol-1           { padding-right: 3rem; }
-  .col-1     { width: calc(12.5rem * 1 + 3rem * 0); }
+  .col-1     { width: calc(8rem * 1); } 
   .col-2     { width: calc(12.5rem * 2 + 3rem * 1); }
   .col-3     { width: calc(12.5rem * 3 + 3rem * 2); }
   .container { width: calc(12.5rem * 3 + 3rem * 4); }
@@ -543,6 +543,10 @@ pre span.lw {
   color: #b4b4b4;
 }
 
+h1 {
+    margin: 15px;
+}
+
 
 /* ================================================================== */
 /* Table of contents */
@@ -611,6 +615,75 @@ pre span.lw {
   top: 23px;
   margin-left: 10px;
 }
+
+/* =========================================== */
+/* Plugin Install Menu */
+
+#install-info {
+    float: left;
+    width: 55%;
+    margin: 15px;
+    margin-top: 0px;
+}
+
+#install-container {
+    float: left;
+    width: 40%;
+}
+
+#plugin_select {
+    width: 50%;
+    margin: auto;
+}
+
+#installed-plugins {
+    clear: left;
+    margin:15px;
+    margin-top: 0px;
+}
+
+
+#plugin-list {
+    width: 100%;
+}
+
+#plugin-list th {
+    background-color: #26292c;
+    font-weight: normal;
+    color: white;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+#plugin-list td {
+    background-color: rgb(238, 238, 238);
+    padding: 10px 20px;
+    color: rgb(111, 111, 111);
+}
+
+#plugin-list #name-header {
+    padding-left: 3.8em;
+}
+
+.uninstall-button {
+    float: left;
+    border-style: none;
+    background: transparent;
+    font-size: 150%;
+    color: red;
+    padding-left: 0px;
+    margin-right: 1em;
+}
+
+#install-divider { 
+    display: block;
+    margin-top: 7.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
 
 /* =========================================== */
 /* Plugin grid */
