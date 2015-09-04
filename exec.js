@@ -45,10 +45,10 @@ var collectArgs = function(state) {
         var activation = containers[i].getElementsByClassName("activation")[0];
         if (activation && activation.checked || !activation) {
             var option = containers[i].getElementsByTagName("input");
-            console.log(option.length);
             // to handle dialog boxes
-            if (option.length == 1 && activation)
-                var option = containers[i].getElementsByTagName("select");
+            if (option.length == 1 && activation) {
+                var option = containers[i].getElementsByTagName("select")[0];
+            }
             // to handle radio buttons
             else if (option.length > 2) {
                 for(var k = 0; k < option.length; k++) {
