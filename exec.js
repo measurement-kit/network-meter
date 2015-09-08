@@ -43,7 +43,7 @@ var collectArgs = function(state) {
         // activation refers to a checkbox that signifies if the user has activated
         // the argument (only for optional arguments)
         var activation = containers[i].getElementsByClassName("activation")[0];
-        if (activation && activation.checked || !activation) {
+        if ((activation && activation.checked) || !activation) {
             var option = containers[i].getElementsByTagName("input");
             // to handle dialog boxes
             if (option.length == 1 && activation) {
