@@ -35,7 +35,25 @@
         "hint": "maximum number of hops (default 30)",
         "min": "1",
         "sanedefault": "30"
+    },
+    {
+        "name": "protocol",
+        "type": "dropdown",
+        "required": false,
+        "flag": "",
+        "hint": "may require root privledges",
+        "options": [
+            { "value": "-T",
+              "display": "TCP"
+            },
+            { "value": "-U",
+              "display": "UDP"
+            },
+            { "value" : "-I",
+              "display": "ICMP"
+            } 
+        ]
     }
     ],
-    "command": "traceroute --verbose $ipv6 $max_ttl $host"
+    "command": "traceroute --verbose $ipv6 $max_ttl $protocol $host"
 } 

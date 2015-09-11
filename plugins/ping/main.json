@@ -64,5 +64,5 @@
             "hint": "target address to ping"
         }
     ],
-    "command": "ping -v $ipv6 $timeout $target"
+    "command": "ping -v $ipv6 $timeout $count $interval $target"
 }

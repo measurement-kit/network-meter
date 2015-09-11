@@ -14,13 +14,6 @@
     {{/each}}
 </div> 
 
-<div class='binary-block'>
-<h2> Binary Execution </h2>
-<button id='file_button'> choose file </button> <br> 
-args: <input type='text' id='args'/>
-<button id='ooni_button'> run ooniprobe </button>
-</div>
-
 <div id="overlay">
     <div id="overlay-container">
          {{#with plugins[selected]}}
@@ -29,8 +22,10 @@ args: <input type='text' id='args'/>
             <a href="#close" class="close">x</a>
          </div>
          <div id="modal-body">
-            <form>
+            <form id="arg-form">
+            <h3> Required </h3>
             {{#each args}}
+            {{#if required}}
             <div class="argument-container">
                 {{#if type == "checkbox"}}
                     <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
@@ -75,15 +70,62 @@ args: <input type='text' id='args'/>
                     </div> <br>
                 {{/if}} {{/if}} {{/if}} {{/if}} {{/if}} {{/if}}
             </div>
+            {{/if}}
             {{/each}}
-            <input type="submit" onclick="return false;" value="run">
+            <h3> Optional </h3>
+            {{#each args}}
+            {{#unless required}}
+            <div class="argument-container">
+                <input type="checkbox" class="activation" name=arg-{{name}}-activated>
+                {{#if type == "checkbox"}}
+                    <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
+                    <div class="arg-buttons">
+                        <input type="checkbox" name=arg-{{name}}>
+                    </div> <br>
+                {{else}}
+                {{#if type == "textbox"}}
+                    <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
+                    <div class="arg-buttons"> 
+                        <input type="text" name=arg-{{name}} pattern={{regex}} title="Error" {{#if required}} required {{/if}}>
+                    </div> <br>
+                {{else}}
+                {{#if type == "numberbox"}}
+                    <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
+                    <div class="arg-buttons">
+                        <input type="number" name=arg-{{name}} min={{min}} value={{sanedefault}} {{#if required}} required {{/if}}>
+                    </div> <br>
+                {{else}}
+                {{#if type == "slider"}}
+                    <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
+                    <div class="arg-buttons">
+                        <input type="range" name=arg-{{name}} min={{min}} max={{max}} value={{sanedefault}}>
+                    </div> <br>
+                {{else}}
+                {{#if type == "radio"}}
+                    <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
+                    <div class="arg-buttons">
+                        {{#each options}}
+                            <input type="radio" name=arg-{{name}} value={{value}}> {{display}} 
+                        {{/each}}
+                    </div> <br>
+                {{else}}
+                {{#if type == "dropdown"}}
+                    <div class="arg-name"> {{name}} <div class="hint">{{hint}}</div> </div>
+                    <div class="arg-buttons">
+                        <select name=arg-{{name}}>
+                        {{#each options}}
+                            <option value={{value}}> {{display}} </option>
+                        {{/each}}
+                        </select>
+                    </div> <br>
+                {{/if}} {{/if}} {{/if}} {{/if}} {{/if}} {{/if}}
+            </div>
+            {{/unless}}
+            {{/each}}
+            <input type="submit" id="run-button" onclick="return false;" value="run">
             <form>
          </div>
          {{/with}}
      </div>
 </div>
 
-<script>
-exec = require("./exec.js");
-exec.bindButtons();
-</script>
