@@ -48,15 +48,19 @@ var collectArgs = function(state) {
         // the argument (only for optional arguments)
         var activation = containers[i].getElementsByClassName("activation")[0];
         if ((activation && activation.checked) || !activation) {
-            var option = containers[i].getElementsByTagName("input");
-            // to handle dialog boxes
-            if (option.length == 1 && activation) {
-                var option = containers[i].getElementsByTagName("select")[0];
+            var option = containers[i].getElementsByClassName("arg-buttons")[0].getElementsByTagName("input");
+            console.log("arg type: " + containers[i].getElementsByClassName("arg-buttons")[0].type);
+            // to handle drop down menu
+            if (!option.length) {
+                if (containers[i].getElementsByTagName("select")) {
+                    var option = containers[i].getElementsByTagName("select")[0];
+                }
+                console.log("something has gone wrong");
             }
             // to handle radio buttons
-            else if (option.length > 2) {
+            else if (option[0].type == "radio") {
                 for(var k = 0; k < option.length; k++) {
-                    if (option[k].checked && k != 0) {
+                    if (option[k].checked) {
                         var option = option[k]
                         break;
                     }
