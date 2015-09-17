@@ -48,8 +48,8 @@ var collectArgs = function(state) {
         // the argument (only for optional arguments)
         var activation = containers[i].getElementsByClassName("activation")[0];
         if ((activation && activation.checked) || !activation) {
-            var option = containers[i].getElementsByClassName("arg-buttons")[0].getElementsByTagName("input");
-            console.log("arg type: " + containers[i].getElementsByClassName("arg-buttons")[0].type);
+            var option = containers[i].getElementsByClassName("arg-buttons")[0]
+                                        .getElementsByTagName("input");
             // to handle drop down menu
             if (!option.length) {
                 if (containers[i].getElementsByTagName("select")) {
