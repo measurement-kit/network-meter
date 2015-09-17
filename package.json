@@ -24,6 +24,7 @@
     "ractive": "^0.7.1",
     "adm-zip": "^0.4.7",
     "silence-chromium": "^2.0.0",
+    "chokidar": "^1.0",
     "rimraf": "^2.1"
   },
   "scripts": {
