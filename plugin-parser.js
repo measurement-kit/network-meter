@@ -11,10 +11,6 @@ exports.loadPlugins = function(callback) {
             return;
         }
 
-        // consider revamp to async forEach.
-        // this method causes considerable startup delay
-        var callbackCounter = files.length;
-
         files.forEach(function(f, index, array) {
             var fullFile = pluginFolder + path.sep + f;
             fs.stat(fullFile, function(err, stats){
@@ -24,7 +20,7 @@ exports.loadPlugins = function(callback) {
                         if (!err) {
                             plugins.push(loadJson(mainFile));
                         }
-                        if (--callbackCounter == 0) {
+                        if (plugins.length > 0) {
                             callback(plugins);
                         }
                     });

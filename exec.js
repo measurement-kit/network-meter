@@ -4,6 +4,7 @@ var dialog = remote.require('dialog');
 
 var fileName = null;
 var args     = null;
+var boundPluginGrid = [];
 
 var run = function() {
     exec(fileName.toString(), [args],  function(err, data) {
@@ -15,11 +16,14 @@ var run = function() {
 exports.bindPluginGrid = function(state){
     list = document.getElementsByClassName("plugin");
     for (var i = 0; i < list.length; i++) { // save us ES6!
-        list[i].addEventListener('click', function(object){
-            state.run.set("selected", object.currentTarget.id);
-            toggleOverlay();
-            bindRunButton(state);
-        }, true);
+        if (boundPluginGrid.indexOf(list[i]) == -1) {
+            list[i].addEventListener('click', function(object){
+                state.run.set("selected", object.currentTarget.id);
+                toggleOverlay();
+                bindRunButton(state);
+            }, true);
+            boundPluginGrid.push(list[i]);
+        }
     }
 }
 
