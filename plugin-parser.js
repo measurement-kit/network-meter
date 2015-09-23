@@ -31,8 +31,9 @@ exports.loadPlugins = function(callback) {
                         var mainFile = path.resolve(fullFile) + path.sep + 'main.json';
                         fs.access(mainFile, fs.R_OK, function(err) {
                             if (!err) {
-                                plugins.push(loadJson(mainFile));
-                                callback(loadJson(mainFile));
+                                var json = loadJson(mainFile);
+                                plugins.push(json);
+                                callback(json);
                             }
                         });
                     }
