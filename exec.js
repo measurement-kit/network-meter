@@ -54,8 +54,9 @@ var collectArgs = function(state) {
             if (!option.length) {
                 if (containers[i].getElementsByTagName("select")) {
                     var option = containers[i].getElementsByTagName("select")[0];
+                } else {
+                    throw "No input tags found and object is not a select dialog"
                 }
-                console.log("something has gone wrong");
             }
             // to handle radio buttons
             else if (option[0].type == "radio") {
