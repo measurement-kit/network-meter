@@ -33,7 +33,13 @@ exports.init = function() {
         state.install = render(ctx, {})
         pluginParser.loadPlugins(function(data){
             // actions can only be bound to grid after full initialization
-            state.install.set("plugins", data).then(libplugin.bindDeleteButtons(state));
+            var temp_plugins;
+            temp_plugins = state.install.get("plugins");
+            if (temp_plugins == undefined) {
+                temp_plugins = [];
+            }
+            temp_plugins.push(data);
+            state.install.set("plugins", temp_plugins).then(libplugin.bindDeleteButtons(state));
         });
       },
       run: function detail (ctx, next) {
@@ -41,7 +47,13 @@ exports.init = function() {
         state.run = render(ctx, {})
         pluginParser.loadPlugins(function(data){
             // actions can only be bound to grid after full initialization
-            state.run.set("plugins", data).then(exec.bindPluginGrid(state));
+            var temp_plugins;
+            temp_plugins = state.run.get("plugins");
+            if (temp_plugins == undefined) {
+                temp_plugins = [];
+            }
+            temp_plugins.push(data);
+            state.run.set("plugins", temp_plugins).then(exec.bindPluginGrid(state));
         });
       },
       settings: function about (ctx, next) {

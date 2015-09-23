@@ -32,9 +32,7 @@ exports.loadPlugins = function(callback) {
                         fs.access(mainFile, fs.R_OK, function(err) {
                             if (!err) {
                                 plugins.push(loadJson(mainFile));
-                            }
-                            if (plugins.length > 0) {
-                                callback(plugins);
+                                callback(loadJson(mainFile));
                             }
                         });
                     }
@@ -43,7 +41,9 @@ exports.loadPlugins = function(callback) {
         });
     } else {
         // cache hit
-        callback(plugins);
+        for (var i = 0; i < plugins.length; i++) {
+            callback(plugins[i]);
+        }
     }
 };
 
