@@ -90,7 +90,9 @@ var collectArgs = function(state) {
         }
     }
 
-    var command = state.run.get("plugins[" + selectedIndex + "].command");
+    var command = state.run.get("plugins["+ selectedIndex + "].exec");
+
+    var command = command + " " + state.run.get("plugins[" + selectedIndex + "].command");
 
     for(var x = 0; x < args.length; x++) {
         // args is an array of (flag name, flag value) tuples

@@ -3,14 +3,7 @@
     "short": "ICMP tool",
     "description": "Tool for displaying the route and measuring transit delays of packets across a network",
     "version": "1.0.0",
-    "exec": [
-        {
-            "full-path": "/bin/ping"
-        },
-        {
-            "global": "ping"
-        }
-    ],
+    "exec": "ping",
     "args": [
         {
             "name": "count",
@@ -64,5 +57,5 @@
             "hint": "target address to ping"
         }
     ],
-    "command": "ping -v $ipv6 $timeout $count $interval $target"
+    "command": "-v $ipv6 $timeout $count $interval $target"
 }
