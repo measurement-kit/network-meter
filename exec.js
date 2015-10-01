@@ -1,16 +1,10 @@
 var exec = require('child_process').execFile;
 var remote = require('remote'); 
 var dialog = remote.require('dialog'); 
+var run = require('./handler.js').startTest;
 
 var fileName = null;
 var args     = null;
-
-var run = function() {
-    exec(fileName.toString(), [args],  function(err, data) {
-        console.log(err);
-        console.log(data.toString());
-    });
-};
 
 exports.bindPluginGrid = function(state){
     list = document.getElementsByClassName("plugin");
@@ -90,9 +84,9 @@ var collectArgs = function(state) {
         }
     }
 
-    var command = state.run.get("plugins["+ selectedIndex + "].exec");
+    var executable = state.run.get("plugins["+ selectedIndex + "].exec");
 
-    var command = command + " " + state.run.get("plugins[" + selectedIndex + "].command");
+    var command = state.run.get("plugins[" + selectedIndex + "].command");
 
     for(var x = 0; x < args.length; x++) {
         // args is an array of (flag name, flag value) tuples
@@ -102,7 +96,8 @@ var collectArgs = function(state) {
     // gets rid of any variables that have not been specified
     command = command.replace(new RegExp(/\$[a-z][a-z0-9_]*\s/g), "");
 
-    dialog.showMessageBox({"type": "info", "message": command, "buttons": ["close"]});
+    // TODO breaks compatability with windows, use fs.seperator instead
+    run(executable + " " + command, "./plugins/" + state.run.get("plugins[" + selectedIndex + "].name") + "/");
 };
 
 /* Toggles an overlay display with arguments for the user

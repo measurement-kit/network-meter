@@ -5,6 +5,7 @@ var fs = require('fs')
 var pluginParser = require('./plugin-parser.js');
 var exec = require('./exec.js');
 var libplugin = require('./plugin.js');
+var handler = require('./handler.js');
 
 Ractive.DEBUG = false
 

@@ -1,17 +1,28 @@
 /* handler.js
  * Manages tests running in parallel
  */
-var startHandler = function() {
+var child_process = require('child_process');
+
+exports.startTest = function(command, directory) {
+    var process = child_process.exec(command, { cwd : directory });
+    tests.push(process);
+
+
+    process.stdout.on('data', function (data) {
+          console.log('stdout: ' + data);
+    });
+    return process;
 }
 
-var getRunningTests = function() {
+exports.killTest = function(test) {
+    test.kill('SIGINT');
 }
 
-var getFinishedTests = function() {
+exports.getRunningTests = function() {
+    return tests;
 }
 
-var startTest = function() {
+exports.getFinishedTests = function() {
 }
 
-var killTest = function() {
-}
+var tests = [];
