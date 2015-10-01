@@ -1,37 +1,51 @@
 var path = require("path");
 var fs  = require("fs");
+var chokidar = require('chokidar'); // node fs.watch doesn't work recursively
+
+var plugins = [];
+var pluginModifications = [];
+
+chokidar.watch(path.resolve(__dirname + path.sep + 'plugins'),
+            {ignored: /[\/\\]\./}).on('all', function(event, path) {
+      pluginModifications.push(event);
+});
 
 exports.loadPlugins = function(callback) {
-    var plugins = [];
     var pluginFolder = path.resolve(__dirname + path.sep + 'plugins');
-    
-    fs.readdir(pluginFolder, function(err, files) {
-        if (err) {
-            console.log(err);
-            return;
-        }
 
-        // consider revamp to async forEach.
-        // this method causes considerable startup delay
-        var callbackCounter = files.length;
+    if (plugins.length == 0 || pluginModifications.length != 0) {
+        // cache miss
+        plugins = []; // reset in case changes made to filesystem
+        pluginModifications = [];
 
-        files.forEach(function(f, index, array) {
-            var fullFile = pluginFolder + path.sep + f;
-            fs.stat(fullFile, function(err, stats){
-                if (stats.isDirectory()) {
-                    var mainFile = path.resolve(fullFile) + path.sep + 'main.json';
-                    fs.access(mainFile, fs.R_OK, function(err) {
-                        if (!err) {
-                            plugins.push(loadJson(mainFile));
-                        }
-                        if (--callbackCounter == 0) {
-                            callback(plugins);
-                        }
-                    });
-                }
+        fs.readdir(pluginFolder, function(err, files) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            files.forEach(function(f, index, array) {
+                var fullFile = pluginFolder + path.sep + f;
+                fs.stat(fullFile, function(err, stats){
+                    if (stats.isDirectory()) {
+                        var mainFile = path.resolve(fullFile) + path.sep + 'main.json';
+                        fs.access(mainFile, fs.R_OK, function(err) {
+                            if (!err) {
+                                var json = loadJson(mainFile);
+                                plugins.push(json);
+                                callback(json);
+                            }
+                        });
+                    }
+                });
             });
         });
-    });
+    } else {
+        // cache hit
+        for (var i = 0; i < plugins.length; i++) {
+            callback(plugins[i]);
+        }
+    }
 };
 
 var loadJson = function(file) {

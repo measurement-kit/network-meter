@@ -14,13 +14,12 @@ var run = function() {
 
 exports.bindPluginGrid = function(state){
     list = document.getElementsByClassName("plugin");
-    for (var i = 0; i < list.length; i++) { // save us ES6!
-        list[i].addEventListener('click', function(object){
-            state.run.set("selected", object.currentTarget.id);
-            toggleOverlay();
-            bindRunButton(state);
-        }, true);
-    }
+    var i = list.length - 1;
+    list[i].addEventListener('click', function(object){
+        state.run.set("selected", object.currentTarget.id);
+        toggleOverlay();
+        bindRunButton(state);
+    }, true);
 }
 
 var bindRunButton = function(state) {
@@ -44,15 +43,20 @@ var collectArgs = function(state) {
         // the argument (only for optional arguments)
         var activation = containers[i].getElementsByClassName("activation")[0];
         if ((activation && activation.checked) || !activation) {
-            var option = containers[i].getElementsByTagName("input");
-            // to handle dialog boxes
-            if (option.length == 1 && activation) {
-                var option = containers[i].getElementsByTagName("select")[0];
+            var option = containers[i].getElementsByClassName("arg-buttons")[0]
+                                        .getElementsByTagName("input");
+            // to handle drop down menu
+            if (!option.length) {
+                if (containers[i].getElementsByTagName("select")) {
+                    var option = containers[i].getElementsByTagName("select")[0];
+                } else {
+                    throw "No input tags found and object is not a select dialog"
+                }
             }
             // to handle radio buttons
-            else if (option.length > 2) {
+            else if (option[0].type == "radio") {
                 for(var k = 0; k < option.length; k++) {
-                    if (option[k].checked && k != 0) {
+                    if (option[k].checked) {
                         var option = option[k]
                         break;
                     }
