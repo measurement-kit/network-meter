@@ -10,19 +10,14 @@ var pluginParser = require('./plugin-parser.js');
 var configure = require('./configure.js');
 
 var fileName = null;
-var deleteButtonBound = [];
 
 exports.bindDeleteButtons = function(state){
     var array = document.getElementsByClassName("uninstall-button");
-    for (var i=0; i < array.length; i++) {
-        if (deleteButtonBound.indexOf(array[i]) == -1) {
-            array[i].addEventListener('click', function(object) {
-                state.install.set("selected", object.currentTarget.id);
-                deleteSelectedPlugin(state);
-            });
-            deleteButtonBound.push(array[i]);
-        }
-    }
+    var i = array.length - 1;
+    array[i].addEventListener('click', function(object) {
+        state.install.set("selected", object.currentTarget.id);
+        deleteSelectedPlugin(state);
+    });
 }
 
 exports.setupInstall = function() {
