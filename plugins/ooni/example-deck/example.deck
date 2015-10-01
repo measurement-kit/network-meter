@@ -1,0 +1,12 @@
+- options:
+    collector: null
+    help: 0
+    logfile: null
+    no-default-reporter: 0
+    parallelism: null
+    pcapfile: null
+    reportfile: null
+    resume: 0
+    subargs: [-f, example-deck/small-urls.txt]
+    test_file: blocking/http_requests
+    testdeck: null
