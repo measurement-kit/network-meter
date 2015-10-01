@@ -3,14 +3,7 @@
     "short": "network diagnostic tool",
     "description": "Tool for displaying the route and measuring transit delays of packets across a network",
     "version": "1.0.0",
-    "exec": [
-    {
-        "full-path": "/usr/bin/traceroute"
-    },
-    {
-        "global": "traceroute"
-    }
-    ],
+    "exec": "traceroute",
     "args": [
     {
         "name": "host",
@@ -55,5 +48,5 @@
         ]
     }
     ],
-    "command": "traceroute --verbose $ipv6 $max_ttl $protocol $host"
+    "command": "--verbose $ipv6 $max_ttl $protocol $host"
 } 
