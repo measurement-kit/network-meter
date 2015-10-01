@@ -31,6 +31,7 @@ var collectArgs = function(state) {
     var containers = document.getElementsByClassName("argument-container");
     var args = [];
     var selectedIndex = state.run.get("selected");
+    var name = state.run.get("plugins[" + selectedIndex + "].name");
 
     for(var i = 0; i < containers.length; i++) {
         // activation refers to a checkbox that signifies if the user has activated
@@ -94,10 +95,10 @@ var collectArgs = function(state) {
     }
 
     // gets rid of any variables that have not been specified
-    command = command.replace(new RegExp(/\$[a-z][a-z0-9_]*\s/g), "");
+    command = executable + " " + command.replace(new RegExp(/\$[a-z][a-z0-9_]*\s/g), "");
 
     // TODO breaks compatability with windows, use fs.seperator instead
-    run(executable + " " + command, "./plugins/" + state.run.get("plugins[" + selectedIndex + "].name") + "/");
+    run(name, command, "./plugins/" + name + "/", state);
 };
 
 /* Toggles an overlay display with arguments for the user
