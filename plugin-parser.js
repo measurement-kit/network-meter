@@ -28,14 +28,15 @@ exports.loadPlugins = function(callback) {
                 var fullFile = pluginFolder + path.sep + f;
                 fs.stat(fullFile, function(err, stats){
                     if (stats.isDirectory()) {
-                        var mainFile = path.resolve(fullFile) + path.sep + 'main.json';
-                        fs.access(mainFile, fs.R_OK, function(err) {
-                            if (!err) {
-                                var json = loadJson(mainFile);
-                                plugins.push(json);
-                                callback(json);
-                            }
-                        });
+                        var mainFile = path.resolve(fullFile) + path.sep + 'main.js';
+                        try {
+                            var plugin = require(mainFile);
+                            var json = plugin.info;
+                            plugins.push(json);
+                            callback(json);
+                        } catch(err) {
+                            console.log("Ignored plugin at: " + mainFile +  ". Possibly corrupt plugin.");
+                        }
                     }
                 });
             });
