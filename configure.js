@@ -5,6 +5,7 @@ var fs = require('fs')
 var pluginParser = require('./plugin-parser.js');
 var exec = require('./exec.js');
 var libplugin = require('./plugin.js');
+var handler = require('./handler.js');
 
 Ractive.DEBUG = false
 
@@ -16,17 +17,17 @@ exports.getState = function() {
 
 exports.init = function() {
     var templates = {
-      status: fs.readFileSync(__dirname + '/templates/status.tmpl').toString(),
+      status_: fs.readFileSync(__dirname + '/templates/status.tmpl').toString(),
       install: fs.readFileSync(__dirname + '/templates/install.tmpl').toString(),
       run: fs.readFileSync(__dirname + '/templates/run.tmpl').toString(),
       settings: fs.readFileSync(__dirname + '/templates/settings.tmpl').toString()
     }
 
-
     var routes = {
-      status: function configure (ctx, next) {
-        ctx.template = templates.status
-        state.status = render(ctx, {})
+      status_: function configure (ctx, next) {
+        ctx.template = templates.status_
+        state.status_ = render(ctx, {})
+        handler.updateTests(state)
       },
       install: function configure (ctx, next) {
         ctx.template = templates.install
@@ -78,8 +79,8 @@ exports.init = function() {
     }
 
     // set up routes
-    page('/', routes.status)
-    page('/status', routes.status)
+    page('/', routes.status_)
+    page('/status', routes.status_)
     page('/install', routes.install)
     page('/run', routes.run)
     page('/settings', routes.settings)
