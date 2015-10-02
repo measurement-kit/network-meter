@@ -97,7 +97,7 @@ var collectArgs = function(state) {
     // gets rid of any variables that have not been specified
     command = executable + " " + command.replace(new RegExp(/\$[a-z][a-z0-9_]*\s/g), "");
 
-    // TODO breaks compatability with windows, use fs.seperator instead
+    // TODO breaks compatibility with windows, use fs.seperator instead
     run(name, command, "./plugins/" + name + "/", state);
 };
 

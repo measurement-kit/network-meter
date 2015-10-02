@@ -1,16 +1,18 @@
-/* handler.js
- * Manages tests running in parallel
+ /* Manages tests running in parallel
  */
 var child_process = require('child_process');
 var configure = require('./configure.js');
 
+var tests = [];
+
 exports.startTest = function(name_, command, directory) {
     var process = child_process.exec(command, { cwd : directory });
     var container = { name : name_,
-                      test: process };
+        test: process 
+    };
 
     process.stdout.on('data', function (data) {
-          console.log('stdout: ' + data);
+        console.log('stdout: ' + data);
     });
 
 
@@ -21,7 +23,6 @@ exports.startTest = function(name_, command, directory) {
     });
 
     tests.push(container);
-
     return process;
 }
 
@@ -40,4 +41,3 @@ exports.updateTests = function(state) {
     state.status_.set("runningTests", tests);
 }
 
-var tests = [];
