@@ -54,7 +54,7 @@ exports.info = {
         ]
     }
     ],
-    "command": "--verbose $ipv6 $max_ttl $protocol $host"
+    "command": "$ipv6 $max_ttl $protocol $host"
 } 
 
 /* setup:
