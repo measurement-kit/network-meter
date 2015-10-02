@@ -1,9 +1,0 @@
-{
-    "name": "ooni",
-    "short": "Open Observatory of Network Interference",
-    "description": "A free software, global observation network for detecting censorship, surveillance and traffic manipulation on the internet",
-    "version": "1.0.0",
-    "exec": "ooniprobe",
-    "args": [],
-    "command": "-i example-deck/example.deck"
-}

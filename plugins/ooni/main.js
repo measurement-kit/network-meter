@@ -4,7 +4,7 @@
 /* info:
  * general metadata about the plugin
  */
-var info = {
+exports.info = {
         "name": "ooni",
         "short": "Open Observatory of Network Interference",
         "description": "A free software, global observation network for detecting censorship, surveillance and traffic manipulation on the internet",
