@@ -2,6 +2,7 @@
  */
 var child_process = require('child_process');
 var configure = require('./configure.js');
+var results = require('./results.js');
 
 var tests = [];
 var finished = [];
@@ -77,7 +78,7 @@ exports.updateTests = function(state) {
 
 /* deletePid(pid)
  * given a process id, remove from list of running
- * tests and refresh status page
+ * tests and start post processing
  */
 var deletePid = function(pid) {
     var index = null;
@@ -88,14 +89,22 @@ var deletePid = function(pid) {
         }
     }
 
-    if (index == null) {
+    if (index == null)
         throw("Not able to find PID of running test!");
-    }
 
-    tests[index].finish = new Date().getTime();
-    finished.push(tests[index]);
-    console.log(tests[index].stdout);
+    processCompleted(tests[index], index);
+}
 
-    tests.splice( index, 1 );
+/* processCompleted(test):
+ * adds test to completed tests array, adds finished time stamp and invokes post
+ * post processing for visualization and such
+ */
+var processCompleted = function(test, originalIndex) {
+    test.finish = new Date().getTime();
+    finished.push(test);
+    // remove process from tests array
+    tests.splice( originalIndex, 1 );
+    // update Ractive 'status' page
     exports.updateTests(configure.getState());
+    results.parse(test);
 }
