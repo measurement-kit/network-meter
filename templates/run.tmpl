@@ -1,5 +1,6 @@
 <h1> Installed Plugins </h1>
 
+
 <div class='plugin-container'>
     {{#each plugins:num}}
         <div class='plugin' id={{num}}>
@@ -72,7 +73,9 @@
             </div>
             {{/if}}
             {{/each}}
-            <h3> Optional </h3>
+            <div id="accordion">
+            <h3 id="toggleLink"> > Optional </h3>
+            <div class="invisibleContent" id="content">
             {{#each args}}
             {{#unless required}}
             <div class="argument-container">
@@ -122,6 +125,8 @@
             </div>
             {{/unless}}
             {{/each}}
+            </div>
+            </div>
             <input type="submit" id="run-button" onclick="return false;" value="run">
             <form>
          </div>
@@ -129,3 +134,4 @@
      </div>
 </div>
 
+<script>// require('./exec.js').bindAccordion()</script>
