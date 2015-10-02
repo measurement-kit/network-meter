@@ -7,7 +7,7 @@ var results = require('./results.js');
 var tests = [];
 var finished = [];
 
-exports.startTest = function(name_, command, directory) {
+exports.startTest = function(name_, command, directory, reportFile) {
     var process = child_process.exec(command, { cwd : directory });
     var container = { 
         name : name_,
@@ -15,42 +15,25 @@ exports.startTest = function(name_, command, directory) {
         pid: process.pid,
         stdout: "",
         stderr: "",
+        reportFile: "",
         start: new Date().getTime(),
         finish: null
     };
 
     process.stdout.on('data', function (data) {
-        // TODO more efficient way of doing this
-        var index = null;
-        for (i = 0; i < tests.length; i++) {
-            if (tests[i].pid == process.pid) {
-                index = i;
-                break
-            }
-        }
-        if (index == null) {
-            throw("invalid PID");
-        }
-        tests[index].stdout = tests[index].stdout + data;
+        var test = pidToTest(process.pid);
+        test.stdout = test.stdout + data;
     });
 
     process.stderr.on('data', function (data) {
-        // TODO more efficient way of doing this
-        var index = null;
-        for (i = 0; i < tests.length; i++) {
-            if (tests[i].pid == process.pid) {
-                index = i;
-                break
-            }
-        }
-        if (index == null) {
-            throw("invalid PID");
-        }
-        tests[index].stderr = tests[index].stderr + data;
+        var test = pidToTest(process.pid);
+        test.stderr = test.stderr + data;
     });
 
     process.on('close', function(code, signal) {
-        deletePid(process.pid);
+        var test = pidToTest(process.pid);
+        test = results.processDiskReport(test, reportFile)
+        processCompleted(test);
     });
 
     // no need to run updateTests since it will be refreshed once
@@ -76,11 +59,24 @@ exports.updateTests = function(state) {
     state.status_.set("finishedTests", finished);
 }
 
-/* deletePid(pid)
- * given a process id, remove from list of running
- * tests and start post processing
+/* processCompleted(test):
+ * adds test to completed tests array, adds finished time stamp and invokes post
+ * post processing for visualization and such
  */
-var deletePid = function(pid) {
+var processCompleted = function(test) {
+    test.finish = new Date().getTime();
+    finished.push(test);
+    // remove process from tests array
+    tests.splice( tests.indexOf(test), 1 );
+    // update Ractive 'status' page
+    exports.updateTests(configure.getState());
+    results.parse(test);
+}
+
+/* pidToTests(pid):
+ * taskes a pid int and returns a test container
+ */
+var pidToTest = function(pid) {
     var index = null;
     for (i = 0; i < tests.length; i++) {
         if (tests[i].pid == pid) {
@@ -91,20 +87,6 @@ var deletePid = function(pid) {
 
     if (index == null)
         throw("Not able to find PID of running test!");
-
-    processCompleted(tests[index], index);
-}
-
-/* processCompleted(test):
- * adds test to completed tests array, adds finished time stamp and invokes post
- * post processing for visualization and such
- */
-var processCompleted = function(test, originalIndex) {
-    test.finish = new Date().getTime();
-    finished.push(test);
-    // remove process from tests array
-    tests.splice( originalIndex, 1 );
-    // update Ractive 'status' page
-    exports.updateTests(configure.getState());
-    results.parse(test);
+    
+    return tests[index];
 }

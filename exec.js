@@ -112,7 +112,7 @@ var collectArgs = function(state) {
     command = executable + " " + command.replace(new RegExp(/\$[a-z][a-z0-9_]*\s/g), "");
 
     // TODO breaks compatibility with windows, use fs.seperator instead
-    run(name, command, "./plugins/" + name + "/", state);
+    run(name, command, "./plugins/" + name + "/", null);
 };
 
 /* Toggles an overlay display with arguments for the user
