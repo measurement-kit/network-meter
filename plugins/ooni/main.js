@@ -11,8 +11,8 @@ exports.info = {
         "version": "1.0.0",
         "exec": "ooniprobe",
         "args": [],
-        "output": "STDOUT" | "-o",
-        "command": "-i example-deck/example.deck"
+        "output": "-o",
+        "command": "-i example-deck/example.deck -o"
 };
 
 /* setup:

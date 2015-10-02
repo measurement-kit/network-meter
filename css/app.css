@@ -840,7 +840,17 @@ input:invalid {
     min-height: 100px;
     margin: 10px;
     padding: 10px;
-    background: lightblue;
+    background: royalblue;
+    text-align: center;
+}
+
+.finished {
+    float: left;
+    min-width: 300px;
+    min-height: 100px;
+    margin: 10px;
+    padding: 10px;
+    background: seagreen;
     text-align: center;
 }
 
