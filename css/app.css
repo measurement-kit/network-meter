@@ -792,6 +792,7 @@ input:invalid {
     border-spacing: 2px;
     vertical-align: middle;
     clear: left;
+    min-height: 55px;
 }
 
 .arg-name {
@@ -877,4 +878,9 @@ input:invalid {
     transform: scale(1.0);
     opacity: 0;
   }
+}
+
+.invisibleContent {
+    height:0px;
+    overflow: hidden;
 }

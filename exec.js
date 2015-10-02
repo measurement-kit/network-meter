@@ -13,14 +13,28 @@ exports.bindPluginGrid = function(state){
         state.run.set("selected", object.currentTarget.id);
         toggleOverlay();
         bindRunButton(state);
+        exports.bindAccordion();
     }, true);
+}
+
+exports.bindAccordion = function() {
+    var toggleLink = document.getElementById("toggleLink");
+    toggleLink.addEventListener("click", function() {
+        var content = document.getElementById("content");    
+        if (content.className == "invisibleContent")
+            content.className = "visibleContent";
+        else
+            content.className = "invisibleContent";
+    });
 }
 
 var bindRunButton = function(state) {
     document.getElementById("run-button").addEventListener("click", 
         function() { 
-            if (formValid())
-                collectArgs(state) 
+            if (formValid()) {
+                collectArgs(state)
+                toggleOverlay()
+            }
         });
 };
 
