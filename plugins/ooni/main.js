@@ -12,7 +12,7 @@ exports.info = {
         "exec": "ooniprobe",
         "args": [],
         "output": "-o",
-        "command": "-i example-deck/example.deck -o"
+        "command": "-i example-deck/example.deck"
 };
 
 /* setup:
