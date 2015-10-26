@@ -1,6 +1,7 @@
 var path = require("path");
 var fs  = require("fs");
 var chokidar = require('chokidar'); // node fs.watch doesn't work recursively
+var regex = require("./regex.js");
 
 var plugins = [];
 var pluginModifications = [];
@@ -28,12 +29,16 @@ exports.loadPlugins = function(callback) {
                 var fullFile = pluginFolder + path.sep + f;
                 fs.stat(fullFile, function(err, stats){
                     if (stats.isDirectory()) {
-                        var mainFile = path.resolve(fullFile) + path.sep + 'main.json';
-                        fs.access(mainFile, fs.R_OK, function(err) {
+                        var mainFileName = path.resolve(fullFile) + path.sep + 'main.json';
+                        fs.access(mainFileName, fs.R_OK, function(err) {
                             if (!err) {
-                                var json = loadJson(mainFile);
-                                plugins.push(json);
-                                callback(json);
+                                fs.readFile(mainFileName, function (err, data) {
+                                    var fileContents = data.toString();
+                                    var processedString = regex.findAndReplaceRegex(fileContents);
+                                    var json = JSON.parse(processedString);
+                                    plugins.push(json);
+                                    callback(json);
+                                });
                             }
                         });
                     }
