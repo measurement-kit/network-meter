@@ -78,10 +78,8 @@ for ths field. If not set, defaults to false.
 
 ###Regex###
 Optional. Can only be used if "type" is set to "parameter" and "textbox" interface element
-is used. User input is evaluated against this regex. Please note that regexes must be
-escaped before storage in a JSON object. You may find 
-[this tool](http://bernhardhaeussner.de/odd/json-escape/) useful.
-
+is used. User input is evaluated against this regex. Can be one of: "email", "IP", "domain",
+"hostName" (IP or domain) and "URL".
 ###Default###
 Optional. Sane value to use populate field with initially. If the argument is a flag,
 set to `true` to check box by default.
