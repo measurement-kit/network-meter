@@ -9,7 +9,7 @@
         "name": "host",
         "type": "textbox",
         "required": true,
-        "regex": regex.hostName,
+        "regex": "hostName",
         "hint": "IP address of destination"
     },
     {

@@ -53,7 +53,7 @@
             "name": "target",
             "type": "textbox",
             "required": true,
-            "regex": regex.hostName,
+            "regex": "hostName",
             "hint": "target address to ping"
         }
     ],
