@@ -1,0 +1,18 @@
+{
+    "name": "sleep",
+    "short": "Temporary dummy plugin",
+    "description": "dummy plugin for testing without internet",
+    "version": "1.0.0",
+    "exec": "sleep",
+    "args": [
+        {
+            "name": "time",
+            "type": "numberbox",
+            "flag": "",
+            "required": true,
+            "min": "1",
+            "hint": "number of seconds to sleep"
+        }
+    ],
+    "command": "$time"
+}
