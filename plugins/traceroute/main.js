@@ -1,4 +1,10 @@
-{
+/* Example configuration file for OONI plugin
+ */
+
+/* info:
+ * general metadata about the plugin
+ */
+exports.info = {
     "name": "traceroute",
     "short": "network diagnostic tool",
     "description": "Tool for displaying the route and measuring transit delays of packets across a network",
@@ -48,5 +54,30 @@
         ]
     }
     ],
-    "command": "--verbose $ipv6 $max_ttl $protocol $host"
+    "command": "$ipv6 $max_ttl $protocol $host"
 } 
+
+/* setup:
+ * array of commands to be run at time of installation
+ */
+var setup = ["", "", ""];
+
+/* regex(argName, val): 
+ * provided an arugment name and value, this function returns true
+ * if value passes the regex and false otherwise.
+ *
+ * stock regexes from TODO.js class are available for use.
+ */
+var regex = function(argName, val) {
+    return bool
+}
+
+/* parsing(rawData, elementHTML):
+ * function to visualize the data created by the test.
+ * rawData provides the output of the tool and 
+ * elementHTML provides an HTML element to draw inside.
+ *
+ * c3.js or d3.js libraries are available for use.
+ */
+var parsing = function(rawData, elementHTML) {
+}

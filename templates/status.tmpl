@@ -1,7 +1,14 @@
-<h1>Running tests</h1>
+<h1>Running Tests</h1>
 {{#each runningTests}}
 <div class="running">
 <div class="spinner"></div>
 <div class="running-text">{{name}}</div>
+</div>
+{{/each}}
+<h1 style="clear: both">Finished Tests</h1>
+{{#each finishedTests}}
+<div class="finished">
+<div class="running-text">{{name}}</div>
+Runtime: {{(finish - start)/1000}} seconds
 </div>
 {{/each}}

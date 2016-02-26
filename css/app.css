@@ -792,6 +792,7 @@ input:invalid {
     border-spacing: 2px;
     vertical-align: middle;
     clear: left;
+    min-height: 55px;
 }
 
 .arg-name {
@@ -839,7 +840,17 @@ input:invalid {
     min-height: 100px;
     margin: 10px;
     padding: 10px;
-    background: lightblue;
+    background: royalblue;
+    text-align: center;
+}
+
+.finished {
+    float: left;
+    min-width: 300px;
+    min-height: 100px;
+    margin: 10px;
+    padding: 10px;
+    background: seagreen;
     text-align: center;
 }
 
@@ -877,4 +888,9 @@ input:invalid {
     transform: scale(1.0);
     opacity: 0;
   }
+}
+
+.invisibleContent {
+    height:0px;
+    overflow: hidden;
 }
