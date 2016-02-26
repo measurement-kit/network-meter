@@ -32,7 +32,8 @@ exports.startTest = function(name_, command, directory, reportFile) {
 
     process.on('close', function(code, signal) {
         var test = pidToTest(process.pid);
-        test = results.processDiskReport(test, reportFile)
+        // TODO implement disk file reading
+        test = results.processDiskReport(test, null)
         processCompleted(test);
     });
 
