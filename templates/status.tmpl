@@ -8,7 +8,7 @@
 <h1 style="clear: both">Finished Tests</h1>
 {{#each finishedTests}}
 <div class="finished">
-<div class="running-text">{{name}}</div>
+<div class="running-text" onclick="results.display()">{{name}}</div>
 Runtime: {{(finish - start)/1000}} seconds
 </div>
 {{/each}}

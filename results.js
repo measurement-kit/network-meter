@@ -1,5 +1,8 @@
-/* Handles the report output from a plugin */
+var remote = require('remote')
 var fs = require('fs');
+var path = require('path');
+var BrowserWindow = remote.require('browser-window');
+/* Handles the report output from a plugin */
 
 /* processDiskReport(testContainer):
  * if the plugin writes reports to disk, reads appropriate file into memory
@@ -16,6 +19,26 @@ exports.processDiskReport = function(testContainer, reportFile) {
 
 exports.parse = function(testContainer) {
     results = collectOutput(testContainer);
+}
+
+/* displays results in new window
+ *
+ */
+var mainWindow = null
+
+exports.display = function() {
+  mainWindow = new BrowserWindow({ width: 1000, height: 400, show: false })
+ 
+  mainWindow.on('closed', function() {
+    mainWindow = null
+  })
+ 
+  mainWindow.webContents.on('did-finish-load', function() {
+    mainWindow.show()
+    console.log('window is now visible!')
+  })
+ 
+  mainWindow.loadUrl("google.com")
 }
 
 /* collectOutput(plugin, callback):
